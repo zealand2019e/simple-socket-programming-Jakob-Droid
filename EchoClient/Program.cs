@@ -20,17 +20,19 @@ namespace EchoClient
     {
         public void Start()
         {
-            TcpClient socket = new TcpClient("localhost", 7);
+            TcpClient socket = new TcpClient("192.168.24.101", 7);
             using (socket)
             {
                 Stream ns = socket.GetStream();
                 StreamReader sr = new StreamReader(ns);
                 StreamWriter sw = new StreamWriter(ns);
-                sw.WriteLine("Eg Peter");
-                string line = Console.ReadLine();
-                sw.WriteLine(line);
-                sw.Flush();
-
+                sw.AutoFlush = true;
+                while (true)
+                {
+                    string line = Console.ReadLine();
+                    sw.WriteLine(line);
+                    Console.WriteLine(sr.ReadLine());
+                }
             }
 
         }
