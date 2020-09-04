@@ -24,9 +24,14 @@ namespace EchoServer
             TcpListener serverSide = new TcpListener(IPAddress.Loopback, 7777);
             serverSide.Start();
             TcpClient socket = serverSide.AcceptTcpClient();
-            using(socket)
+
+            DoClient(socket);
+        }
+        public void DoClient(TcpClient client)
+        {
+            using (client)
             {
-                Stream ns = socket.GetStream();
+                Stream ns = client.GetStream();
                 StreamReader sr = new StreamReader(ns);
                 StreamWriter sw = new StreamWriter(ns);
 
