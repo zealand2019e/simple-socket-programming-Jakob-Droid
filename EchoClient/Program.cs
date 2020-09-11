@@ -20,7 +20,7 @@ namespace EchoClient
     {
         public void Start()
         {
-            TcpClient socket = new TcpClient("192.168.24.101", 7);
+            TcpClient socket = new TcpClient("192.168.24.183", 7777);
             using (socket)
             {
                 Stream ns = socket.GetStream();
